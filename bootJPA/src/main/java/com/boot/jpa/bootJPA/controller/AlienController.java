@@ -34,12 +34,7 @@ public class AlienController {
 		ModelAndView mv = new ModelAndView("showAlien.jsp");
 		Alien alien = repo.findById(aid).orElse(new Alien()); //Not a good practice
 		
-		//another magical methods to find alien
-		System.out.println(repo.findByTech("Java"));
 		
-		System.out.println(repo.findByAidGreaterThan(aid));
-		
-		System.out.println(repo.findByTechSorted("Java"));
 		
 		
 		
