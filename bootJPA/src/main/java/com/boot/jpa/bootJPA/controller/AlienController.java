@@ -2,8 +2,10 @@ package com.boot.jpa.bootJPA.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.boot.jpa.bootJPA.dao.AlienRepo;
@@ -28,18 +30,22 @@ public class AlienController {
 		return "home.jsp";
 	}
 	
-	@RequestMapping("/getAlien")
-	public ModelAndView getAlien(@RequestParam int aid)
+	@RequestMapping("/aliens")
+	@ResponseBody
+	public String getAliens()
 	{
-		ModelAndView mv = new ModelAndView("showAlien.jsp");
-		Alien alien = repo.findById(aid).orElse(new Alien()); //Not a good practice
 		
+		return repo.findAll().toString();
 		
+	}
+	
+	@RequestMapping("/alien/{aid}")
+	@ResponseBody
+	public String getAlien(@PathVariable("aid") int aid)
+	{
 		
+		return repo.findById(aid).toString();
 		
-		
-		mv.addObject(alien);
-		return mv;
 	}
 	
 }
