@@ -30,7 +30,7 @@ public class AlienController {
 		return "home.jsp";
 	}
 	
-	@PostMapping("/alien")
+	@PostMapping(path="/alien", consumes={"application/json"})
 	public Alien addAlien(@RequestBody Alien alien)
 	{
 		repo.save(alien);
